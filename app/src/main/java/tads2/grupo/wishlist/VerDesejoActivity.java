@@ -3,11 +3,8 @@ package tads2.grupo.wishlist;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-
-import java.text.NumberFormat;
 
 public class VerDesejoActivity extends AppCompatActivity {
 
@@ -17,8 +14,6 @@ public class VerDesejoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalhe_desejo);
-
-        NumberFormat formatter = NumberFormat.getCurrencyInstance();
 
         Bundle bundle = getIntent().getExtras();
 
@@ -32,8 +27,8 @@ public class VerDesejoActivity extends AppCompatActivity {
 
         txtProduto.setText(desejo.getProduto());
         txtCategoria.setText(desejo.getCategoria());
-        txtValorMinimo.setText(formatter.format(desejo.getValorMinimo()));
-        txtValorMaximo.setText(formatter.format(desejo.getValorMaximo()));
+        txtValorMinimo.setText(desejo.getValorMinimo().toString());
+        txtValorMaximo.setText(desejo.getValorMaximo().toString());
         txtLojas.setText(desejo.getLojas());
     }
 

@@ -2,6 +2,7 @@ package tads2.grupo.wishlist;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -12,9 +13,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import tads2.grupo.wishlist.data.DesejosDao;
 
 public class ListarDesejosActivity extends AppCompatActivity {
 
@@ -32,7 +36,14 @@ public class ListarDesejosActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Desejo desejo = (Desejo)parent.getItemAtPosition(position);
+                Cursor cursor = (Cursor) parent.getItemAtPosition(position);
+
+                Desejo desejo = new Desejo(cursor.getInt(0),
+                                           cursor.getString(1),
+                                           cursor.getString(2),
+                                           cursor.getString(5),
+                                           cursor.getDouble(3),
+                                           cursor.getDouble(4));
 
                 Intent intent = new Intent(self, VerDesejoActivity.class);
                 intent.putExtra("desejo", desejo);
@@ -57,12 +68,13 @@ public class ListarDesejosActivity extends AppCompatActivity {
     }
 
     private void loadData() {
-        List<Desejo> desejos = new ArrayList<Desejo>();
 
-        desejos.add(new Desejo("Baixo", "Instrumento musical", "Made in Brazil", 1000.0, 3000.0));
-        desejos.add(new Desejo("Guitarra", "Instrumento musical", "UFO Som", 500.0, 1500.0));
+        Cursor cursor = new DesejosDao(this).getCursor();
+        startManagingCursor(cursor);
 
-        ArrayAdapter<Desejo> adapter = new ArrayAdapter<Desejo>(this, android.R.layout.simple_list_item_1, desejos);
+        String[] columns = new String[] { "PRODUCT" };
+
+        SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, android.R.layout.simple_expandable_list_item_1, cursor, columns, new int[]{android.R.id.text1});
 
         ListView listView = (ListView) findViewById(R.id.listViewDesejos);
 

@@ -41,7 +41,6 @@
         android:layout_alignRight="@+id/textCategoria"
         android:layout_alignEnd="@+id/textCategoria"
         android:hint="Preço mínimo"
-        android:digits="2"
         android:editable="true"
         android:numeric="decimal"
         android:singleLine="true" />
@@ -53,7 +52,6 @@
         android:ems="10"
         android:id="@+id/textValorMaximo"
         android:hint="Preço máximo"
-        android:digits="2"
         android:editable="true"
         android:numeric="decimal"
         android:singleLine="true"
