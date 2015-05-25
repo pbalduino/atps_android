@@ -29,7 +29,8 @@
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:id="@+id/linearLayout">
 
         <TextView
             android:layout_width="wrap_content"
@@ -43,7 +44,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Produto"
-            android:id="@+id/textView2"
+            android:id="@+id/textNomeProduto"
             android:paddingBottom="10dp" />
 
         <TextView
@@ -58,7 +59,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Categoria"
-            android:id="@+id/textView4"
+            android:id="@+id/textCategoria"
             android:paddingBottom="10dp" />
 
         <TextView
@@ -94,7 +95,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="R$ 999999,99"
-                android:id="@+id/textView8"
+                android:id="@+id/textValorMaximo"
                 android:paddingBottom="10dp" />
         </LinearLayout>
 
@@ -110,7 +111,17 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Loja"
-            android:id="@+id/textView9" />
+            android:id="@+id/textLojas" />
 
     </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Editar"
+        android:id="@+id/buttonEditar"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="onButtonEditarClick"/>
+
 </RelativeLayout>

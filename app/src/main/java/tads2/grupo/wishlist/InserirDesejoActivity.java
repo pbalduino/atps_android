@@ -1,37 +1,47 @@
 package tads2.grupo.wishlist;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View;
 
-public class InserirDesejoActivity extends AppCompatActivity {
+public class InserirDesejoActivity extends AppCompatActivity implements DialogInterface.OnClickListener, DialogInterface.OnDismissListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inserir_desejo);
+
+        loadData();
+    }
+
+    public void onButtonIncluirDesejoClick(View view) {
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setTitle(R.string.app_name)
+                .setMessage("Desejo gravado")
+                .setIcon(android.R.drawable.ic_dialog_info)
+                .setNegativeButton("OK", this)
+                .setOnDismissListener(this)
+                .create();
+
+        dialog.show();
+    }
+
+    private void loadData() {
+
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_inserir_desejo, menu);
-        return true;
+    public void onClick(DialogInterface dialog, int which) {
+        Intent intent = new Intent(this, ListarDesejosActivity.class);
+        startActivity(intent);
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+    public void onDismiss(DialogInterface dialog) {
+        Intent intent = new Intent(this, ListarDesejosActivity.class);
+        startActivity(intent);
     }
 }

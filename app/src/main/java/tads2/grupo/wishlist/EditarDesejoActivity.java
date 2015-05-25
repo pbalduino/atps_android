@@ -2,8 +2,9 @@ package tads2.grupo.wishlist;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.widget.TextView;
+
+import java.text.NumberFormat;
 
 public class EditarDesejoActivity extends AppCompatActivity {
 
@@ -11,27 +12,23 @@ public class EditarDesejoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editar_desejo);
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_editar_desejo, menu);
-        return true;
-    }
+        NumberFormat formatter = NumberFormat.getCurrencyInstance();
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        Bundle bundle = getIntent().getExtras();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+        Desejo desejo = (Desejo) bundle.get("desejo");
 
-        return super.onOptionsItemSelected(item);
+        TextView txtProduto = (TextView) findViewById(R.id.textNomeProduto);
+        TextView txtCategoria = (TextView) findViewById(R.id.textCategoria);
+        TextView txtValorMinimo = (TextView) findViewById(R.id.textValorMinimo);
+        TextView txtValorMaximo = (TextView) findViewById(R.id.textValorMaximo);
+        TextView txtLojas = (TextView) findViewById(R.id.textLojas);
+
+        txtProduto.setText(desejo.getProduto());
+        txtCategoria.setText(desejo.getCategoria());
+        txtValorMinimo.setText(formatter.format(desejo.getValorMinimo()));
+        txtValorMaximo.setText(formatter.format(desejo.getValorMaximo()));
+        txtLojas.setText(desejo.getLojas());
     }
 }

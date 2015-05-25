@@ -14,13 +14,15 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:longClickable="true"
-        android:layout_above="@+id/buttonIncluir" />
+        android:layout_above="@+id/buttonIncluirDesejo"
+        android:clickable="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Incluir desejo"
-        android:id="@+id/buttonIncluir"
+        android:text="Novo  desejo"
+        android:id="@+id/buttonIncluirDesejo"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="onButtonIncluirDesejoClick" />
 </RelativeLayout>

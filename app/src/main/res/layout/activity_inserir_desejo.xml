@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:inputType="numberDecimal"
         android:ems="10"
-        android:id="@+id/textPrecoMinimo"
+        android:id="@+id/textValorMinimo"
         android:layout_below="@+id/textCategoria"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -51,23 +51,23 @@
         android:layout_height="wrap_content"
         android:inputType="numberDecimal"
         android:ems="10"
-        android:id="@+id/textPrecoMaximo"
+        android:id="@+id/textValorMaximo"
         android:hint="Preço máximo"
         android:digits="2"
         android:editable="true"
         android:numeric="decimal"
         android:singleLine="true"
-        android:layout_below="@+id/textPrecoMinimo"
+        android:layout_below="@+id/textValorMinimo"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/textPrecoMinimo"
-        android:layout_alignEnd="@+id/textPrecoMinimo" />
+        android:layout_alignRight="@+id/textValorMinimo"
+        android:layout_alignEnd="@+id/textValorMinimo" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textLojas"
-        android:layout_below="@+id/textPrecoMaximo"
+        android:layout_below="@+id/textValorMaximo"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
@@ -77,8 +77,10 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Incluir pedido"
-        android:id="@+id/buttonIncluirPedido"
+        android:text="Salvar"
+        android:id="@+id/buttonIncluirDesejo"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="onButtonIncluirDesejoClick" />
+
 </RelativeLayout>

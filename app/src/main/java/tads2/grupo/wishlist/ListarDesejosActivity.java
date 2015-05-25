@@ -1,12 +1,16 @@
 package tads2.grupo.wishlist;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -14,12 +18,45 @@ import java.util.List;
 
 public class ListarDesejosActivity extends AppCompatActivity {
 
+    private final ListarDesejosActivity self = this;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_listar_desejos);
 
+        loadData();
+
+        ListView listView = (ListView)findViewById(R.id.listViewDesejos);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Desejo desejo = (Desejo)parent.getItemAtPosition(position);
+
+                Intent intent = new Intent(self, VerDesejoActivity.class);
+                intent.putExtra("desejo", desejo);
+
+                startActivity(intent);
+            }
+        });
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Desejo desejo = (Desejo)parent.getItemAtPosition(position);
+
+                Intent intent = new Intent(self, EditarDesejoActivity.class);
+                intent.putExtra("desejo", desejo);
+
+                startActivity(intent);
+
+                return true;
+            }
+        });
+
+    }
+
+    private void loadData() {
         List<Desejo> desejos = new ArrayList<Desejo>();
 
         desejos.add(new Desejo("Baixo", "Instrumento musical", "Made in Brazil", 1000.0, 3000.0));
@@ -29,10 +66,16 @@ public class ListarDesejosActivity extends AppCompatActivity {
 
         ListView listView = (ListView) findViewById(R.id.listViewDesejos);
 
-        Log.w("ListView", "" + adapter);
-        Log.w("ListView", "" + listView);
-
         listView.setAdapter(adapter);
+    }
+
+    public void onButtonIncluirDesejoClick(View view) {
+        gotoIncluirDesejo();
+    }
+
+    private void gotoIncluirDesejo() {
+        Intent incluirDesejo = new Intent(this, InserirDesejoActivity.class);
+        startActivity(incluirDesejo);
     }
 
     @Override
@@ -50,15 +93,9 @@ public class ListarDesejosActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        switch (id)
-        {
+        switch (id) {
             case R.id.action_new: {
-                AlertDialog dialog = new AlertDialog
-                        .Builder(this)
-                        .setMessage("Superstyling")
-                        .create();
-
-                dialog.show();
+                gotoIncluirDesejo();
             }
         }
 
