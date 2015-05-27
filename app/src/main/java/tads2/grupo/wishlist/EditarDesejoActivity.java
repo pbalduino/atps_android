@@ -1,14 +1,19 @@
 package tads2.grupo.wishlist;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import tads2.grupo.wishlist.data.DesejosDao;
 
 public class EditarDesejoActivity extends AppCompatActivity {
+
+    final private EditarDesejoActivity self = this;
 
     private TextView textProduto;
     private TextView textCategoria;
@@ -38,7 +43,8 @@ public class EditarDesejoActivity extends AppCompatActivity {
         textValorMinimo.setText(desejo.getValorMinimo().toString());
         textValorMaximo.setText(desejo.getValorMaximo().toString());
         textLojas.setText(desejo.getLojas());
-        textId.setText(desejo.getId());
+
+        textId.setText("" + desejo.getId());
     }
 
     public void onButtonGravarDesejoClick(View view) {
@@ -56,6 +62,14 @@ public class EditarDesejoActivity extends AppCompatActivity {
                 .setMessage("Desejo gravado")
                 .setIcon(android.R.drawable.ic_dialog_info)
                 .setNegativeButton("OK", null)
+                .setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        Intent intent = new Intent(self, ListarDesejosActivity.class);
+
+                        startActivity(intent);
+                    }
+                })
                 .create()
                 .show();
     }

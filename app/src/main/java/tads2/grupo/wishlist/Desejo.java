@@ -1,5 +1,7 @@
 package tads2.grupo.wishlist;
 
+import android.database.Cursor;
+
 import java.io.Serializable;
 
 /**
@@ -28,6 +30,7 @@ public final class Desejo implements Serializable {
     }
 
     public int getId() { return id; }
+    
     public String getProduto() {
         return produto;
     }
@@ -46,5 +49,14 @@ public final class Desejo implements Serializable {
 
     public String getLojas() {
         return lojas;
+    }
+
+    public static Desejo fromCursor(Cursor cursor) {
+        return new Desejo(cursor.getInt(0),
+                cursor.getString(1),
+                cursor.getString(2),
+                cursor.getString(5),
+                cursor.getDouble(3),
+                cursor.getDouble(4));
     }
 }

@@ -38,15 +38,8 @@ public class ListarDesejosActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Cursor cursor = (Cursor) parent.getItemAtPosition(position);
 
-                Desejo desejo = new Desejo(cursor.getInt(0),
-                                           cursor.getString(1),
-                                           cursor.getString(2),
-                                           cursor.getString(5),
-                                           cursor.getDouble(3),
-                                           cursor.getDouble(4));
-
                 Intent intent = new Intent(self, VerDesejoActivity.class);
-                intent.putExtra("desejo", desejo);
+                intent.putExtra("desejo", Desejo.fromCursor(cursor));
 
                 startActivity(intent);
             }
@@ -54,10 +47,10 @@ public class ListarDesejosActivity extends AppCompatActivity {
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                Desejo desejo = (Desejo)parent.getItemAtPosition(position);
+                Cursor cursor = (Cursor)parent.getItemAtPosition(position);
 
                 Intent intent = new Intent(self, EditarDesejoActivity.class);
-                intent.putExtra("desejo", desejo);
+                intent.putExtra("desejo", Desejo.fromCursor(cursor));
 
                 startActivity(intent);
 
@@ -68,7 +61,6 @@ public class ListarDesejosActivity extends AppCompatActivity {
     }
 
     private void loadData() {
-
         Cursor cursor = new DesejosDao(this).getCursor();
         startManagingCursor(cursor);
 

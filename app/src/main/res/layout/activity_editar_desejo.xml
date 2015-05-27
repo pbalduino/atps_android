@@ -15,7 +15,6 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:editable="true"
         android:hint="Nome do produto" />
 
     <EditText
@@ -41,8 +40,6 @@
         android:layout_alignRight="@+id/textCategoria"
         android:layout_alignEnd="@+id/textCategoria"
         android:hint="Preço mínimo"
-        android:digits="2"
-        android:editable="true"
         android:numeric="decimal"
         android:singleLine="true" />
 
@@ -53,8 +50,6 @@
         android:ems="10"
         android:id="@+id/textValorMaximo"
         android:hint="Preço máximo"
-        android:digits="2"
-        android:editable="true"
         android:numeric="decimal"
         android:singleLine="true"
         android:layout_below="@+id/textValorMinimo"
@@ -72,7 +67,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:hint="Loja onde encontrar" />
+        android:hint="Loja onde encontrar"/>
 
     <TextView
         android:layout_width="wrap_content"

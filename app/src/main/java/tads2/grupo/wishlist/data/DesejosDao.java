@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 import android.widget.SimpleCursorAdapter;
 
 import java.lang.reflect.Array;
@@ -39,8 +40,10 @@ public class DesejosDao {
         values.put("STORES", desejo.getLojas());
 
         if(desejo.getId() == 0) {
+            Log.d("DesejosDao", "Wish inserted - " + values);
             database.insert(DatabaseHelper.WISHES_TABLE_NAME, null, values);
         } else {
+            Log.d("DesejosDao", "Wish " + desejo.getId() + " (" + desejo.getProduto() + ") updated - " + values);
             database.update(DatabaseHelper.WISHES_TABLE_NAME, values, "ID = ?", new String[] {"" + desejo.getId()});
         }
     }
