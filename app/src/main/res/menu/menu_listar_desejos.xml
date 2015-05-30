@@ -3,5 +3,5 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="tads2.grupo.wishlist.ListarDesejosActivity">
     <item android:id="@+id/action_new" android:title="Inserir desejo"
-        android:orderInCategory="100" app:showAsAction="never" />
+        android:orderInCategory="100" app:showAsAction="ifRoom" />
 </menu>

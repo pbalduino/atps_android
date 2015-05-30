@@ -47,4 +47,11 @@ public class DesejosDao {
             database.update(DatabaseHelper.WISHES_TABLE_NAME, values, "ID = ?", new String[] {"" + desejo.getId()});
         }
     }
+
+    public void delete(Desejo desejo) {
+        SQLiteDatabase database = DatabaseHelper.getInstance(context).getDatabase();
+
+        database.delete(DatabaseHelper.WISHES_TABLE_NAME, "ID = ?", new String[] {"" + desejo.getId()});
+        Log.d("DesejosDao", "Wish " + desejo.getId() + " was deleted");
+    }
 }
