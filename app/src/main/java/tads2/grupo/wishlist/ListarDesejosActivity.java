@@ -58,9 +58,9 @@ public class ListarDesejosActivity extends AppCompatActivity {
         MenuItem item = menu.findItem(R.id.action_share);
 
         shareActionProvider = (ShareActionProvider) item.getActionProvider();
+        shareActionProvider.setShareIntent(getDefaultShareIntent());
 
-        item
-
+/*
         shareActionProvider.setOnShareTargetSelectedListener(new ShareActionProvider.OnShareTargetSelectedListener() {
             @Override
             public boolean onShareTargetSelected(ShareActionProvider source, Intent intent) {
@@ -68,8 +68,16 @@ public class ListarDesejosActivity extends AppCompatActivity {
                 return true;
             }
         });
-
+*/
         Log.d("ListarDesejosActivity", "onCreateContextMenu: " + shareActionProvider);
+    }
+
+    private Intent getDefaultShareIntent(){
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_SUBJECT, "SUBJECT");
+        intent.putExtra(Intent.EXTRA_TEXT,"Extra Text");
+        return intent;
     }
 
     @Override
@@ -106,6 +114,7 @@ public class ListarDesejosActivity extends AppCompatActivity {
                 break;
             }
             case R.id.action_share: {
+
                 break;
             }
         }
