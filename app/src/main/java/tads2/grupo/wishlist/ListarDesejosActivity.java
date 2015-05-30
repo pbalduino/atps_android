@@ -60,15 +60,6 @@ public class ListarDesejosActivity extends AppCompatActivity {
         shareActionProvider = (ShareActionProvider) item.getActionProvider();
         shareActionProvider.setShareIntent(getDefaultShareIntent());
 
-/*
-        shareActionProvider.setOnShareTargetSelectedListener(new ShareActionProvider.OnShareTargetSelectedListener() {
-            @Override
-            public boolean onShareTargetSelected(ShareActionProvider source, Intent intent) {
-                Log.d("ListarDesejosActivity", "onShareTargetSelected - " + source + " - " + intent);
-                return true;
-            }
-        });
-*/
         Log.d("ListarDesejosActivity", "onCreateContextMenu: " + shareActionProvider);
     }
 
